@@ -2,8 +2,10 @@
   <component :is="parentComponent"
              :to="localOptions.action.route"
              :class="options.className"
-             :href="localOptions.action.route">
-    <q-img :src="getImageSource(options)"
+             :href="localOptions.action.route"
+             @click="onClickLink">
+    <q-img :ref="imageRef"
+           :src="getImageSource(options)"
            :ratio="options.ratio"
            spinner-color="primary"
            :width="getImageWidth(options)"
@@ -88,6 +90,15 @@ export default {
     window.removeEventListener('resize', this.onResize)
   },
   methods: {
+    onClickLink (event) {
+      event.preventDefault()
+      event.stopPropagation()
+      if (this.parentComponent === 'a') {
+        window.location.href = this.localOptions.action.route
+      } else {
+        this.$router.push(this.localOptions.action.route)
+      }
+    },
     setProductIntersectionObserver () {
       const elements = [this.$refs[this.imageRef].$el]
       const observer = new IntersectionObserver(this.handleIntersection)
@@ -196,7 +207,9 @@ export default {
       if (typeof window === 'undefined') {
         return true
       }
-      return ((url.indexOf(':') > -1 || url.indexOf('//') > -1) && this.checkDomain(window.location.href) !== this.checkDomain(url))
+      // return ((url.indexOf(':') > -1 || url.indexOf('//') > -1) && this.checkDomain(window.location.href) !== this.checkDomain(url))
+      // return ((url.indexOf('http://') > -1 || url.indexOf('https://') > -1) && this.checkDomain(window.location.href) !== this.checkDomain(url))
+      return (url.indexOf('http://') > -1 || url.indexOf('https://') > -1)
     },
     takeAction(action) {
       if (!this.localOptions.hasAction) {
