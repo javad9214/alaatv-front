@@ -72,33 +72,66 @@
           <div class="titles">
             <div class="access title-box">
               <div class="main-title">دسترسی به سایت</div>
-              <!-- <q-btn flat
+              <q-btn flat
                      class="sub-title"
                      :to="{name: 'cart'}">
-                سوالات متداول
-              </q-btn> -->
+                صفحه ی اصلی
+              </q-btn>
+              <q-btn flat
+                     class="sub-title"
+                     :to="{name: 'cart'}">
+                قوانین سایت
+              </q-btn>
               <q-btn flat
                      class="sub-title"
                      :to="{name: 'UserPanel.Ticket'}">
-                تیکت پشتیبانی
-              </q-btn>
-              <!-- <q-btn flat
-                     class="sub-title"
-                     :to="{name: 'cart'}">
-                ارتباط با ما
+                پشتیبانی
               </q-btn>
               <q-btn flat
                      class="sub-title"
                      :to="{name: 'cart'}">
                 درباره ما
-              </q-btn> -->
+              </q-btn>
+              <q-btn flat
+                     class="sub-title"
+                     :to="{name: 'cart'}">
+                ارتباط با ما
+              </q-btn>
             </div>
             <div class="profile title-box">
               <div class="main-title">دسترسی های کاربران</div>
               <q-btn flat
+                     class="sub-title">
+                ثبت نام و ورود
+              </q-btn>
+              <q-btn flat
+                     class="sub-title">
+                دوره های آموزشی
+              </q-btn>
+              <q-btn flat
+                     class="sub-title">
+                کانال ها
+              </q-btn>
+              <q-btn flat
+                     class="sub-title">
+                سبد خرید
+              </q-btn>
+              <q-btn flat
+                     class="sub-title">
+                مجله آلاء
+              </q-btn>
+              <!--              <q-btn flat-->
+              <!--                     class="sub-title"-->
+              <!--                     :to="{name: 'Public.Shop'}">-->
+              <!--                محصولات آموزشی-->
+              <!--              </q-btn>-->
+            </div>
+            <div class="services title-box">
+              <div class="main-title">خدمات آلاء</div>
+              <q-btn flat
                      class="sub-title"
-                     :to="{name: 'Public.Shop'}">
-                محصولات آموزشی
+                     :href="'https://forum.alaatv.com'">
+                آلاخونه
               </q-btn>
               <q-btn flat
                      class="sub-title"
@@ -106,23 +139,48 @@
                 سوالا
               </q-btn>
               <q-btn flat
-                     class="sub-title"
-                     :href="'https://forum.alaatv.com'">
-                آلاخونه
+                     class="sub-title">
+                چی بخونم؟
               </q-btn>
+              <q-btn flat
+                     class="sub-title">
+                فندار(به زودی)
+              </q-btn>
+              <q-btn flat
+                     class="sub-title">
+                عطارد(به زودی)
+              </q-btn>
+              <!--              <q-btn flat-->
+              <!--                     class="sub-title"-->
+              <!--                     :to="{name: 'Public.Landing.DynamicName', params: {landing_name: 'rahabrisham'}}">-->
+              <!--                راه ابریشم-->
+              <!--              </q-btn>-->
+              <!--              <q-btn flat-->
+              <!--                     class="sub-title"-->
+              <!--                     :to="{name: 'Public.Landing.DynamicName', params: {landing_name: 'emtehan-nahaee-nohom'}}">-->
+              <!--                امتحان نهایی-->
+              <!--              </q-btn>-->
             </div>
-            <div class="products title-box">
-              <div class="main-title">دسته بندی های محبوب</div>
-              <q-btn flat
-                     class="sub-title"
-                     :to="{name: 'Public.Landing.DynamicName', params: {landing_name: 'rahabrisham'}}">
-                راه ابریشم
-              </q-btn>
-              <q-btn flat
-                     class="sub-title"
-                     :to="{name: 'Public.Landing.DynamicName', params: {landing_name: 'emtehan-nahaee-nohom'}}">
-                امتحان نهایی
-              </q-btn>
+            <div class="signsOfTrust title-box">
+              <div class="main-title">نماد های اعتماد</div>
+              <div class="footer-row">
+                <div class="footer-logo-item item-alaa">
+                  <a href="https://trustseal.enamad.ir/?id=125806&Code=MIc5m5QgNzwT4U7FmBLE"
+                     target="_blank">
+                    <q-img src="https://trustseal.enamad.ir/Content/Images/Star/star1.png?v=5.0.0.47"
+                           alt="enamad.ir"
+                           style="cursor:pointer" />
+                  </a>
+                </div>
+                <div class="footer-logo-item item-enamad">
+                  <a href="https://logo.samandehi.ir/Verify.aspx?id=146279&p=rfthaodsgvkauiwkjyoepfvl"
+                     target="_blank">
+                    <q-img src="https://nodes.alaatv.com/upload/samandehi.png?w=90&h=94"
+                           alt="enamad.ir"
+                           style="cursor:pointer" />
+                  </a>
+                </div>
+              </div>
             </div>
             <div class="others title-box self-center" />
           </div>
@@ -670,11 +728,12 @@ export default {
           grid-template-columns:1fr ;
         }
         .main-title {
+          color: $grey-8;
           margin-left: 8px;
           margin-bottom:16px;
-          font-weight: 400;
-          font-size: 14px;
-          line-height: 22px;
+          font-weight: 600;
+          font-size: 16px;
+          line-height: 24px;
           @media screen and (max-width: 1439px){
             margin-bottom: 12px;
           }
@@ -682,9 +741,10 @@ export default {
         :deep(.sub-title) {
           width: 100%;
           align-items: flex-start;
-          color: #434765;
-          font-size: 12px;
-          line-height: 19px;
+          color: $grey-8;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 21px;
           min-height: unset;
           margin-bottom: 10px;
           @media screen and (max-width: 1439px){
