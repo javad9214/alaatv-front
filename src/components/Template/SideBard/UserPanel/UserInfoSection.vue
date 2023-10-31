@@ -46,6 +46,13 @@
         {{ user.mobile }}
       </div>
     </div>
+    <div v-if="editable"
+         class="edit">
+      <q-btn icon="ph:pencil-simple"
+             size="sm"
+             flat
+             round />
+    </div>
   </div>
 </template>
 
@@ -58,6 +65,12 @@ export default {
   name: 'UserInfoSection',
   components: { LazyImg },
   mixins: [mixinAuth],
+  props: {
+    editable: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       api: APIGateway.user.APIAdresses.base,
@@ -147,6 +160,11 @@ export default {
     position: absolute;
     right: 0;
     top: 0;
+  }
+  .edit{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }
 </style>

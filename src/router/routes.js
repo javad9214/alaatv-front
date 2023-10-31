@@ -265,7 +265,7 @@ const routes = [
         path: 'panel',
         name: 'UserPanel',
         layoutConfig: {
-          layoutView: 'hHh Lpr fff',
+          layoutView: 'hHh Lpr ffr',
           showHamburgerBtn: false,
           layoutLeftDrawer: true,
           layoutLeftSideBarType: 'user-panel',
