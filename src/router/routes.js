@@ -91,6 +91,14 @@ const routes = [
                   hasDynamicSetting: true
                 },
                 component: () => import('pages/Public/Product/Show.vue')
+              },
+              {
+                name: 'Public.Product.Alpha.Show',
+                path: ':id/alpha',
+                meta: {
+                  hasDynamicSetting: true
+                },
+                component: () => import('pages/Public/Product/Show.vue')
               }
             ]
           },
