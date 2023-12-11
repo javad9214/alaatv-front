@@ -140,10 +140,17 @@ export default {
 <style lang="scss" scoped>
 .side-menu-main-layout {
   height: 100%;
+  width: 383px;
   display: flex;
   overflow-y: auto;
   background: white;
+  padding: $space-8;
   flex-direction: column;
+
+  @include media-max-width('sm') {
+    padding: $space-5;
+    width: 228px;
+  }
 
   .side-logo {
     padding: 16px 48px;

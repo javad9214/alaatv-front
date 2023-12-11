@@ -108,12 +108,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .SideMenuItems {
   :deep(.badge) {
     animation: badge 1s infinite;
   }
 
   :deep(.q-expansion-item) {
+    box-shadow: unset;
     .q-expansion-item__container {
       .q-expansion-item__content {
         padding-left: 18px;

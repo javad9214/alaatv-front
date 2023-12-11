@@ -1,5 +1,7 @@
+@import "src/css/Theme/Controls/input.scss";
 $header-separator-padding-xl: $space-8;
 $header-separator-padding-md: $space-5;
+
 
 .q-expansion-item {
   width: 100%;
@@ -84,6 +86,21 @@ $header-separator-padding-md: $space-5;
     border-radius: $radius-3;
   }
 
+  .q-expansion-item__container{
+    .q-item{
+      .q-item__section{
+        &.cursor-pointer{
+          .q-icon{
+            @include q-field__prepend_and_append_icon_style;
+            color: $blue-grey-7;
+            &::before {
+              content: "\e9fe";
+            }
+          }
+        }
+      }
+    }
+  }
 
   .header-action-section {
     display: flex;
