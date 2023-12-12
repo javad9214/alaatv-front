@@ -18,7 +18,7 @@ const routes = [
       layoutLeftDrawerOverlay: false,
       layoutLeftDrawerElevated: false,
       layoutLeftDrawerBordered: false,
-      layoutLeftDrawerWidth: 325,
+      layoutLeftDrawerWidth: 383,
       layoutLeftDrawerBehavior: 'default',
       layoutRightDrawer: false,
       layoutFooter: true,

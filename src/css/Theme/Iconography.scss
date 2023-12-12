@@ -1,17 +1,33 @@
+
+@mixin handle-icon-sizes($size) {
+  $target-font-size: 20px;
+  @if $size == "xs" {
+    $target-font-size: 12px;
+  } @else if $size == "sm" {
+    $target-font-size: 16px;
+  } @else if $size == "md" {
+    $target-font-size: 20px;
+  } @else if $size == "lg" {
+    $target-font-size: 24px
+  } @else if $size == "xl" {
+    $target-font-size: 32px
+  }
+  font-size: $target-font-size;
+}
+
 .q-icon {
   &.size-xs {
-    font-size: 12px;
+    @include handle-icon-sizes("xs")
   }
   &.size-sm {
-    font-size: 16px;
+    @include handle-icon-sizes("sm")
   }
   &.size-md {
-    font-size: 20px;
+    @include handle-icon-sizes("md")
   }
   &.size-lg {
-    font-size: 24px;
+    @include handle-icon-sizes("lg")
   }
   &.size-xl {
-    font-size: 32px;
-  }
+    @include handle-icon-sizes("xl")  }
 }

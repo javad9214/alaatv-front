@@ -1,10 +1,17 @@
 <template>
   <div class="side-menu-main-layout">
-    <router-link class="side-logo"
-                 :to="{name: 'Public.Home'}">
-      <lazy-img src="https://nodes.alaatv.com/upload/design-system/alaa-logotype2.png"
-                class="logo-image" />
-    </router-link>
+    <div class="header-section">
+      <router-link class="side-logo"
+                   :to="{name: 'Public.Home'}">
+        <lazy-img src="https://nodes.alaatv.com/upload/design-system/alaa-logotype2.png"
+                  class="logo-image" />
+      </router-link>
+      <q-btn flat
+             square
+             icon="ph:x"
+             class="size-lg"
+             @click="closeDrawer" />
+    </div>
     <q-list class="side-menu-list"
             padding>
       <template v-if="false">
@@ -130,6 +137,9 @@ export default {
     },
     logOut () {
       return this.$store.dispatch('Auth/logOut')
+    },
+    closeDrawer () {
+      console.log('drawer closed')
     }
   }
 }
@@ -150,13 +160,20 @@ export default {
     width: 228px;
   }
 
-  .side-logo {
-    :deep(.logo-image) {
-      width: auto;
-      height: 48px;
-      margin-bottom: $space-5;
-      @include media-max-width('sm'){
-        height: 40px;
+  .header-section{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: $space-5;
+    justify-content: space-between;
+
+    .side-logo {
+      :deep(.logo-image) {
+        width: auto;
+        height: 48px;
+        @include media-max-width('sm'){
+          height: 40px;
+        }
       }
     }
   }

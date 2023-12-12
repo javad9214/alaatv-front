@@ -118,10 +118,16 @@ export default {
     box-shadow: unset;
     .q-expansion-item__container {
       .q-item{
+        padding: 0;
+        &:hover {
+          .q-focus-helper {
+            background: transparent;
+          }
+        }
         .q-item__section{
           &.cursor-pointer{
             .q-icon{
-              font-size: 20px;
+              @include handle-icon-sizes("md")
             }
           }
         }
@@ -136,10 +142,13 @@ export default {
     &.q-router-link--active {
       color: inherit;
     }
-
     &.q-item--active,
     &.q-router-link--exact-active {
       color: $primary;
+    }
+    .q-item__section{
+      color: $grey-9;
+      @include subtitle2;
     }
   }
 }
