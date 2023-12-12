@@ -117,6 +117,15 @@ export default {
   :deep(.q-expansion-item) {
     box-shadow: unset;
     .q-expansion-item__container {
+      .q-item{
+        .q-item__section{
+          &.cursor-pointer{
+            .q-icon{
+              font-size: 20px;
+            }
+          }
+        }
+      }
       .q-expansion-item__content {
         padding-left: 18px;
       }

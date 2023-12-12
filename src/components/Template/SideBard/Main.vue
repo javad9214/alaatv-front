@@ -2,9 +2,7 @@
   <div class="side-menu-main-layout">
     <router-link class="side-logo"
                  :to="{name: 'Public.Home'}">
-      <lazy-img src="https://nodes.alaatv.com/upload/alaa-footer-desc.png"
-                width="180"
-                height="52"
+      <lazy-img src="https://nodes.alaatv.com/upload/design-system/alaa-logotype2.png"
                 class="logo-image" />
     </router-link>
     <q-list class="side-menu-list"
@@ -148,16 +146,18 @@ export default {
   flex-direction: column;
 
   @include media-max-width('sm') {
-    padding: $space-5;
+    padding: $space-8 $space-5;
     width: 228px;
   }
 
   .side-logo {
-    padding: 16px 48px;
-    display: block;
-
     :deep(.logo-image) {
-      width: 100%;
+      width: auto;
+      height: 48px;
+      margin-bottom: $space-5;
+      @include media-max-width('sm'){
+        height: 40px;
+      }
     }
   }
 
