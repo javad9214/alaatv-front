@@ -139,7 +139,7 @@ export default {
       return this.$store.dispatch('Auth/logOut')
     },
     closeDrawer () {
-      console.log('drawer closed')
+      this.$store.commit('AppLayout/updateLayoutLeftDrawerVisible', false)
     }
   }
 }
