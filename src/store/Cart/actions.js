@@ -10,7 +10,7 @@ export function addToCart (context, newProductData) {
     const payload = {
       product: newProductData.product, // Number or String
       product_id: newProductData.product.id, // Number or String
-      products: newProductData.products ? newProductData.products : [], // Array (List ofProduct's ID)
+      products: newProductData.products ? newProductData.products : [], // Array (List ofProduct's I D)
       attribute: newProductData.attribute ? newProductData.attribute : [], // Array
       ...(newProductData.has_instalment_option && { has_instalment_option: newProductData.has_instalment_option })
     }

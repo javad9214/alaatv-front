@@ -126,6 +126,239 @@ describe('Actions', () => {
         [new Product(productData.product).eec.getData()] // products
       )
     })
+
+    it('adds a product to the cart for a guest user and shows notification (login) -> simple', async () => {
+      const mockCart = new Cart({
+        id: 123,
+        items: []
+      })
+      context.getters.cart = mockCart
+      context.rootGetters['Auth/isUserLogin'] = true
+      const productToAdd = new Product({ id: 1 })
+      const productData = { product: productToAdd, product_id: productToAdd.id }
+
+      await addToCart(context, productData)
+
+      // context.commit.mock.calls.forEach(call => {
+      //   console.log(call[1].items.list[0].grand) // `call[1]` is the second argument of the call
+      // })
+
+      expect(context.commit).toHaveBeenNthCalledWith(1, 'updateCart', expect.objectContaining({
+        loading: true
+      }))
+      // expect(context.getters.cart.addToCart).toHaveBeenNthCalledWith(1, expect.objectContaining({
+      //   attribute: [],
+      //   // product: {
+      //   //   id: productToAdd.id
+      //   // },
+      //   product_id: productToAdd.id,
+      //   products: []
+      // }))
+
+      expect(context.commit).toHaveBeenNthCalledWith(2, 'updateCart', expect.objectContaining({
+        id: 123,
+        items: expect.objectContaining({
+          list: expect.arrayContaining([
+            expect.objectContaining({
+              grand: expect.objectContaining({
+                id: null
+              }),
+              order_product: expect.objectContaining({
+                list: expect.arrayContaining([
+                  expect.objectContaining({
+                    product: expect.objectContaining({
+                      id: productToAdd.id
+                    }),
+                    id: productToAdd.id,
+                    order_id: productToAdd.id
+                  })
+                ])
+              })
+            })
+          ])
+        })
+      }))
+      // expect(Notify.create).toHaveBeenCalledTimes(1)
+
+      expect(context.commit).toHaveBeenNthCalledWith(3, 'updateCart', expect.objectContaining({
+        loading: false
+      }))
+
+      expect(AEE.productAddToCart).toHaveBeenNthCalledWith(1,
+        'product.addToCart', // actionFieldList
+        [new Product(productData.product).eec.getData()] // products
+      )
+
+      expect(context.dispatch).toHaveBeenNthCalledWith(1, 'reviewCart')
+    })
+
+    it('adds a product to the cart for a guest user and shows notification (logout) -> selectable', async () => {
+      const mockCart = new Cart({
+        id: 123,
+        items: [
+          {
+            grand: {
+              id: 1234,
+              title: 'test grand product'
+            },
+            order_product: [
+              {
+                product: {
+                  id: 12345,
+                  title: 'test child 1 product'
+                }
+              },
+              {
+                product: {
+                  id: 12346,
+                  title: 'test child 2 product'
+                }
+              }
+            ]
+          }
+        ]
+      })
+      context.getters.cart = mockCart
+      context.rootGetters['Auth/isUserLogin'] = false
+      const productToAdd = new Product({ id: 1 })
+      const productData = { product: productToAdd, product_id: productToAdd.id }
+
+      await addToCart(context, productData)
+
+      // context.commit.mock.calls.forEach(call => {
+      //   console.log(call[1].items.list[0].grand) // `call[1]` is the second argument of the call
+      // })
+
+      expect(context.commit).toHaveBeenNthCalledWith(1, 'updateCart', expect.objectContaining({
+        loading: true
+      }))
+      // expect(context.getters.cart.addToCart).toHaveBeenNthCalledWith(1, expect.objectContaining({
+      //   attribute: [],
+      //   // product: {
+      //   //   id: productToAdd.id
+      //   // },
+      //   product_id: productToAdd.id,
+      //   products: []
+      // }))
+
+      expect(context.commit).toHaveBeenNthCalledWith(2, 'updateCart', expect.objectContaining({
+        id: 123,
+        items: expect.objectContaining({
+          list: expect.arrayContaining([
+            expect.objectContaining({
+              grand: expect.objectContaining({
+                id: null
+              }),
+              order_product: expect.objectContaining({
+                list: expect.arrayContaining([
+                  expect.objectContaining({
+                    product: expect.objectContaining({
+                      id: productToAdd.id
+                    }),
+                    id: productToAdd.id,
+                    order_id: productToAdd.id
+                  })
+                ])
+              })
+            })
+          ])
+        })
+      }))
+      expect(Notify.create).toHaveBeenCalledTimes(1)
+
+      expect(context.commit).toHaveBeenNthCalledWith(3, 'updateCart', expect.objectContaining({
+        loading: false
+      }))
+
+      expect(AEE.productAddToCart).toHaveBeenNthCalledWith(1,
+        'product.addToCart', // actionFieldList
+        [new Product(productData.product).eec.getData()] // products
+      )
+    })
+
+    it('adds a product to the cart for a guest user and shows notification (login) -> selectable', async () => {
+      const mockCart = new Cart({
+        id: 123,
+        items: [
+          {
+            grand: {
+              id: 1234,
+              title: 'test grand product'
+            },
+            order_product: [
+              {
+                product: {
+                  id: 12345,
+                  title: 'test child 1 product'
+                }
+              },
+              {
+                product: {
+                  id: 12346,
+                  title: 'test child 2 product'
+                }
+              }
+            ]
+          }
+        ]
+      })
+      context.getters.cart = mockCart
+      context.rootGetters['Auth/isUserLogin'] = true
+      const productToAdd = new Product({ id: 1 })
+      const productData = { product: productToAdd, product_id: productToAdd.id }
+
+      await addToCart(context, productData)
+
+      // context.commit.mock.calls.forEach(call => {
+      //   console.log(call[1].items.list[0].grand) // `call[1]` is the second argument of the call
+      // })
+
+      expect(context.commit).toHaveBeenNthCalledWith(1, 'updateCart', expect.objectContaining({
+        loading: true
+      }))
+      // expect(context.getters.cart.addToCart).toHaveBeenNthCalledWith(1, expect.objectContaining({
+      //   attribute: [],
+      //   // product: {
+      //   //   id: productToAdd.id
+      //   // },
+      //   product_id: productToAdd.id,
+      //   products: []
+      // }))
+
+      expect(context.commit).toHaveBeenNthCalledWith(2, 'updateCart', expect.objectContaining({
+        id: 123,
+        items: expect.objectContaining({
+          list: expect.arrayContaining([
+            expect.objectContaining({
+              grand: expect.objectContaining({
+                id: null
+              }),
+              order_product: expect.objectContaining({
+                list: expect.arrayContaining([
+                  expect.objectContaining({
+                    product: expect.objectContaining({
+                      id: productToAdd.id
+                    }),
+                    id: productToAdd.id,
+                    order_id: productToAdd.id
+                  })
+                ])
+              })
+            })
+          ])
+        })
+      }))
+      expect(Notify.create).toHaveBeenCalledTimes(1)
+
+      expect(context.commit).toHaveBeenNthCalledWith(3, 'updateCart', expect.objectContaining({
+        loading: false
+      }))
+
+      expect(AEE.productAddToCart).toHaveBeenNthCalledWith(1,
+        'product.addToCart', // actionFieldList
+        [new Product(productData.product).eec.getData()] // products
+      )
+    })
   })
 
   describe('reviewCart', () => {
